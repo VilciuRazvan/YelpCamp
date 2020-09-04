@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+
+<div class="row">
+	<div class="col-md-4">
+		<h1><%= user.firstName + " " +user.lastName %></h1>
+		<div class="thumbnail">
+			
+			<img src="<%= user.avatar %>" alt="User Profile Image">
+			<div class="caption">
+				<a href="mailto:<%= user.email %>"><%= user.email %></a>
+			</div>
+		</div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis id mi non imperdiet. Fusce non arcu sed sem pharetra sollicitudin a pharetra purus. Phasellus lobortis nunc in metus elementum faucibus. Fusce ut semper tortor, vel sodales nisi. Nulla facilisi. Maecenas in gravida nisi, at viverra lacus. Quisque sit amet auctor urna, eget elementum urna. Praesent tempor in lectus eget varius. Praesent at enim enim. Donec tristique molestie nibh ornare suscipit. Etiam lectus augue, cursus non elit sit amet, volutpat tempor lectus.
+
+Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu diam imperdiet, eleifend nisl ut, sollicitudin sem. Cras diam ex, luctus quis dictum eu, venenatis id orci. Pellentesque dignissim dui quis lorem lacinia, sed commodo sem consectetur. Vivamus gravida nibh sed ligula laoreet sagittis. Nunc lacus metus, tincidunt sed nunc a, volutpat elementum lorem. Duis dignissim tellus tellus, lacinia sodales odio mattis imperdiet. Cras tincidunt ultrices ex id efficitur. Ut a placerat massa.
+
+Pellentesque finibus eget elit eu accumsan. Suspendisse cursus dolor at urna rutrum, vel blandit velit scelerisque. Donec maximus metus a diam dapibus, vel vestibulum enim porttitor. Nunc quis neque vitae sapien maximus tristique quis dictum magna. Phasellus non congue nulla. Ut ullamcorper efficitur eros tincidunt bibendum. Mauris molestie eros purus, at faucibus libero consequat a. Mauris ac porttitor velit, a tristique purus. Vestibulum bibendum tortor turpis, id convallis orci varius ut. Cras sed finibus nulla, sit amet ultricies urna. Morbi blandit magna fringilla arcu tempor auctor.
+	</div>
+	<div class="col-md-8">
+		<h3><%= user.username %>'s campgrounds:</h3>
+		 <% if(campgrounds.length < 1) { %>
+                  <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6> 
+             <% } else { %>
+                  <% campgrounds.forEach( campground => { %>
+						<ul>
+							<li><a href="../campgrounds/<%= campground.id %>"><%= campground.name %></a></li>
+						</ul>
+                 <% }) %>
+            <% } %>
+	</div>
+</div>
+<% if(currentUser && user._id.equals(currentUser._id)){ %>
+	<a href="/users/<%= user._id %>/edit" class="btn btn-primary">Edit Profile</a>
+<% } %>
+
+<%- include("../partials/footer") %>
